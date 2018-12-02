@@ -1,0 +1,158 @@
+<!doctype html>
+<html>
+
+  <head>
+    <title>Bike Dock System</title>
+
+    <meta charset="utf-8" />
+    <style type="text/css">
+      body {
+        text-align: center;
+        min-width: 500px;
+      }
+    </style>
+    <!-- <script src="http://code.jquery.com/jquery.min.js"></script> -->
+
+    <title>jQuery UI Buttons functionality</title>
+    <link href = "https://code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css"
+        rel = "stylesheet">
+    <script src = "https://code.jquery.com/jquery-1.12.1.js"></script>
+    <script src = "https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    <script>
+
+    $(document).ready(function () {
+      //$("div#login_details").hide();
+      $("div#checking_details").hide()
+      $("div#checkin_page").hide()
+      $("div#checkout_page").hide()
+
+
+      $("input").button();
+
+      $("#login").click(function(evt)
+      {
+        var user = $("#user").val();
+        var pass = $("#pass").val();
+
+        if( user == "mango" && pass == "mango")
+        {
+          alert("Login Successful");
+          $("div#checking_details").show()
+          $("div#login_details").hide()
+        }
+        else
+        {
+          alert("Incorrect Credentials !!!");
+        }
+      });
+
+        $("#checkin").click(function(evt)
+        {
+          $("div#checking_details").hide()
+          $("div#checkin_page").show()
+          $("div#checkout_page").hide()
+        });
+
+        $("#checkout").click(function(evt)
+        {
+          $("div#checking_details").hide()
+          $("div#checkin_page").hide()
+          $("div#checkout_page").show()
+        });
+
+    })
+
+    </script>
+
+
+    <style>
+
+    .grid-container  {
+      display: grid;
+      grid-template-columns: auto auto;
+      //background-color: #2196F3;
+      padding: 50px;
+      grid-column-gap: 80px;
+      grid-row-gap: 20px;
+      justify-content: center;
+    }
+    .grid-container > div {
+      background-color: #2196F3;
+      border: 1px solid rgba(0, 0, 0, 0.8);
+      padding: 20px;
+
+      text-align: center;
+    }
+
+    body {
+      background-image: url("https://www.outdoorproject.com/sites/default/files/styles/cboxshow/public/rainier2013_2.jpg?itok=YeEBAyej");
+      background-size: cover;
+      //background-repeat: no-repeat;
+    }
+
+    </style>
+
+  </head>
+
+  <body>
+
+  </br></br>
+
+  <font size="7" color=#dddddd >Bike Dock System</font>
+
+  </br></br>
+  </br></br>
+
+    <div id="login_details">
+      <font size="6" color=#dddddd >Login</font>
+
+      </br></br>
+      <font color=#eeeeee>Identikey : </font>
+      <input type="text" id="user" value="mango" style="background:#2196F3;"/></br></br>
+      <font color=#eeeeee>Password : </font>
+      <input type="password" id="pass" value="mango" style="background:#2196F3;"/></br></br>
+      <input type="submit" id="login" value="login" />
+    </div>
+
+    <div id="checking_details">
+      </br></br>
+      <input type="submit" id="checkin" value="checkin" />
+      <input type="submit" id="checkout" value="checkout" />
+      <input type="submit" id="open_dock" value="Open Dock" />
+    </div>
+
+    <div id="checkin_page">
+
+      <font size="6" color=#dddddd >Checkin</font>
+      </br></br>
+
+      <font color=#eeeeee>Location : </font>
+      <input type="text" style="background:#2196F3;"></br></br>
+      <font color=#eeeeee>Slot No : </font>
+      <input type="number" style="background:#2196F3;"></br></br>
+      <input type="submit" id="Reserve" value="Reserve" />
+      </br></br>
+
+    </div>
+
+    <div id="checkout_page">
+
+      <font size="6" color=#dddddd >Checkout</font>
+
+    </br></br>
+
+      <font color=#eeeeee>Location : "data from database" </font></br></br>
+      <font color=#eeeeee>Slot No  : "data from database"</font></br></br>
+      <input type="submit" id="Return" value="Return" />
+      </br></br>
+
+    </div>
+
+
+
+
+  </body>
+
+
+</html>
