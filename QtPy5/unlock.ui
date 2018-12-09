@@ -49,7 +49,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>Locked</string>
+    <string/>
    </property>
   </widget>
   <widget class="QSpinBox" name="timer_value">

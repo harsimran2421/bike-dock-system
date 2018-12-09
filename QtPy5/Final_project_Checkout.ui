@@ -153,7 +153,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>Cancel?</string>
+    <string>Unlock</string>
    </property>
   </widget>
   <widget class="Line" name="line_10">
