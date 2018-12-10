@@ -11,7 +11,7 @@ Execution Instructions:
 
 1. To run the ‘Automated Dock System’ Application on the Dock Console (Touch pad System) double click the icon with title ‘Automated Dock System’
 
-2. To access the website on any system , click “ Automated Dock System” or click the link as “http://bike-dock-system.s3-website-us-east-1.amazonaws.com/”.
+2. To access the website on any system , click “ Automated Dock System” or click the link as http://bike-dock-system.s3-website-us-east-1.amazonaws.com/
 
 Project Description:
 
