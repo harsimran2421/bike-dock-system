@@ -11,6 +11,7 @@
         min-width: 500px;
       }
     </style>
+    <link rel='icon' href='https://vcgmedia.objects.frb.io/ucarm/cu-favicon.png' type='image/x-icon'/ >
     <!-- <script src="http://code.jquery.com/jquery.min.js"></script> -->
 
     <script type="text/javascript" src="lib/axios/dist/axios.standalone.js"></script>
@@ -118,12 +119,12 @@
               .then(function(result){
                   //This is where you would put a success callback
                   //console.log(result.data);
-                  // result.data.Items.forEach(function(element, index, array){
-                  //   var resultStr = 'Dock :' + element.dock + ' <br><br>';
-                  //   console.log(resultStr);
-                  // });
-                  var resultStr = 'Dock :' + result.data.Items.dock + ' <br><br>';
-                  console.log(resultStr);
+                  $('#results').empty();
+                  result.data.Items.forEach(function(element, index, array){
+                      var resultStr = " Dock : "+element.dock.N+"   Slot : "+element.slot.N+"   Availability : "+element.booking.S+"</br>";
+                      $('#results').append(resultStr);
+                      console.log(resultStr);
+                  });
               }).catch( function(result){
                   //This is where you would put an error callback
               });
@@ -307,7 +308,17 @@
       <font size="6" color=#dddddd >Booking</font>
       </br></br>
 
-      <font color=#eeeeee>Dock : </font>
+      <font size="4" >Dock Availability</font>
+
+      </br></br>
+
+      <div id="results" style="background-color:#2196F3">
+
+      </div>
+
+      </br></br>
+
+      <font color=#eeeeee>Dock No : </font>
       <input type="number" id="dock" style="background:#2196F3;"></br></br>
       <font color=#eeeeee>Slot No : </font>
       <input type="number" id="slot" style="background:#2196F3;"></br></br>
