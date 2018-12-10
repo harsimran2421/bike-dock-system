@@ -9,8 +9,6 @@ def lambda_handler(event, context):
     # TODO implement
     print(event['message_value'])
     print(event['mobile_number'])
-#    print(event.key2)
-#    print(event.key3)
     return {
         'statusCode': 200,
         'body': json.dumps('Hello from Lambda!')
