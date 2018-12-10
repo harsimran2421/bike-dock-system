@@ -56,3 +56,4 @@ Extra Features:
 	- using python SDK in addition to MQTT communication service
 	- Making use of DynamoDB AWS service as a alternative to use local database to avoi a single point of failure
 	- Used Custom stylesheets to improve the UI of the website
+	- Using API gateway for connecting the webpage to AWS
