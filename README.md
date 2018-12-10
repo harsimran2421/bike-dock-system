@@ -46,6 +46,10 @@ References:
 	- https://pimylifeup.com/raspberry-pi-rfid-rc522/ 
 	- https://www.youtube.com/watch?v=Byhg9BBsbJw
 	- https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/CurrentAPI.html 
+	- https://en.wikipedia.org/wiki/Amazon_DynamoDB
+	- https://aws.amazon.com/dynamodb/
+	- https://aws.amazon.com/s3/
+	- https://aws.amazon.com/api-gateway/
 
 Extra Features:
 	- website hosting on S3 bucket for to make it serverless
