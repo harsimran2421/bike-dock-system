@@ -2,20 +2,24 @@
 
 #References:
 #    https://bradmontgomery.net/blog/sending-sms-messages-amazon-sns-and-python/
+#    https://boto3.amazonaws.com/v1/documentation/api/latest/guide/dynamodb.html
+#    https://aws.amazon.com/sns/
+#    https://stackoverflow.com/questions/35422490/pyqt5-add-image-in-background-of-mainwindow-layout
+#     https://docs.aws.amazon.com/lambda/latest/dg/python-programming-model-handler-types.html
+#     https://pimylifeup.com/raspberry-pi-rfid-rc522/ 
 
 import sys
+import datetime
 from PyQt5.QtCore import pyqtSlot
-from PyQt5.QtWidgets import QApplication
-from PyQt5.QtWidgets import QDialog
-from PyQt5.QtWidgets import QWidget
+from PyQt5.QtWidgets import QApplication, QDialog, QWidget
 from PyQt5.uic import loadUi
 from PySide.QtCore import *
-#from PyQt5 import QtCore
 from PyQt5 import QtWidgets, QtGui, QtCore
 from time import sleep
 import boto3
 from boto3.dynamodb.conditions import Key, Attr
 from time import gmtime, strftime, sleep
+from PyQt5.QtGui import QImage
 #MQTT setup
 from AWSIoTPythonSDK.MQTTLib import AWSIoTMQTTClient 
 
@@ -68,7 +72,7 @@ class initial_page(QtWidgets.QDialog):
         font.setFamily("PibotoLt")
         self.setFont(font)
         self.setWindowOpacity(10.0)
-        self.setStyleSheet("background-color: rgb(12, 12, 12);\n"
+        self.setStyleSheet("background-image: url(bike-dock-system1.jpg);\n"
                 "")
         self.setWindowTitle('Options')
         self.username_button.clicked.connect(self.username_buttonc)  
@@ -88,6 +92,12 @@ class Login_rfid(QtWidgets.QDialog):
     def __init__(self, parent= None):
         super(Login_rfid, self).__init__(parent)
         loadUi ('login_rfid.ui',self)
+        font = QtGui.QFont()
+        font.setFamily("PibotoLt")
+        self.setFont(font)
+        self.setWindowOpacity(10.0)
+        self.setStyleSheet("background-image: url(bike-dock-system1.jpg);\n"
+                "")
         self.setWindowTitle('Login!')
         self.scan_button.clicked.connect(self.login_compare)  
     def login_compare(self):
@@ -124,7 +134,7 @@ class Login_rfid(QtWidgets.QDialog):
         for i in items:
             print("entered for loop")
             valid_flag = 1
-            username = i['email_id']
+            username = i['first_name']
             password = i['last_name']
             if i['slot'] == '0' and i['RFID_value'] == rfid_value:
                 test_flag = 1
@@ -150,7 +160,19 @@ class Login(QtWidgets.QDialog):
         super(Login, self).__init__(parent)
         loadUi ('Final_project_Login.ui',self)
         self.setWindowTitle('Login!')
+        font = QtGui.QFont()
+        font.setFamily("PibotoLt")
+        self.setFont(font)
+        self.setWindowOpacity(0)
+        self.setStyleSheet("background-image: url(bike-dock-system1.jpg);\n"
+                "")
         self.pushButton1.clicked.connect(self.login_compare)  
+        currentDT = datetime.datetime.now()
+        self.label_4.setText(currentDT.strftime("%I:%M:%S %p"))
+        self.label_4.repaint()
+        self.label_6.setText(currentDT.strftime("%Y/%m/%d"))
+        self.label_6.repaint()
+
     def login_compare(self):
         global test_flag
         global slot_value
@@ -185,12 +207,19 @@ class confirm(QDialog):
         super(confirm, self).__init__()
         loadUi ('Final_project_Config.ui',self)
         self.setWindowTitle('Confirmation!')
+        font = QtGui.QFont()
+        font.setFamily("PibotoLt")
+        self.setFont(font)
+        self.setWindowOpacity(10.0)
+        self.setStyleSheet("background-image: url(bike-dock-system1.jpg);\n"
+                "")
         self.label_6.setText(first_name)
-        current_time = strftime("%H:%M:%S", gmtime())
-        self.label_8.setText(current_time)
+        self.label_6.repaint()
+        currentDT = datetime.datetime.now()
+        self.label_8.setText(currentDT.strftime("%I:%M:%S %p"))
+        self.label_8.repaint()
         self.pushButton4.clicked.connect(self.on_pushButton4c_clicked)
         self.pushButton5.clicked.connect(self.on_pushButton5c_clicked)
-    
     @pyqtSlot()
    
     def on_pushButton4c_clicked(self):
@@ -212,6 +241,12 @@ class checkout(QDialog):
         global username
         global password
         self.setWindowTitle('Checkout!')
+        font = QtGui.QFont()
+        font.setFamily("PibotoLt")
+        self.setFont(font)
+        self.setWindowOpacity(10.0)
+        self.setStyleSheet("background-image: url(bike-dock-system1.jpg);\n"
+                "")
         self.checkout_username.setText(username)
         self.checkout_slot.setText(str(slot_value))
         self.checkout_dock.setText("1")
@@ -285,6 +320,20 @@ class project(QDialog):
         super(project, self).__init__()
         loadUi ('Final_project.ui',self)
         self.setWindowTitle('Welcome!')
+        font = QtGui.QFont()
+        font.setFamily("PibotoLt")
+        self.setFont(font)
+        self.setWindowOpacity(10.0)
+        currentDT = datetime.datetime.now()
+        self.label_9.setText(currentDT.strftime("%I:%M:%S %p"))
+        self.label_9.repaint()
+        self.label_11.setText(currentDT.strftime("%Y/%m/%d"))
+        self.label_11.repaint()
+
+#        self.setStyleSheet("background-image: url(bike-dock-system1.jpg);\n"
+#               "")
+#        self.setStyleSheet("font-color: rgb(0,0,0);\n"
+#                "")
         self.pushButton2.clicked.connect(self.on_pushButton2c_clicked)
         self.pushButton3.clicked.connect(self.on_pushButton3c_clicked)
         self.pushButton.clicked.connect(self.on_pushButtonc_clicked)
@@ -296,22 +345,25 @@ class project(QDialog):
         print(items)
         self.spinBox1.setValue(0)
         self.spinBox2.setValue(1)
-        self.slot4.setText("X")
-        self.slot5.setText("X")
-        self.slot6.setText("X")
-        self.slot7.setText("X")
-        self.slot8.setText("X")
-        self.slot9.setText("X")
-        self.slot1.setText("X")
-        self.slot2.setText("X")
-        self.slot3.setText("X")
+        self.slot1.setStyleSheet("background-color: rgb(128, 0, 0);\n")
+        self.slot2.setStyleSheet("background-color: rgb(128, 0, 0);\n")
+        self.slot3.setStyleSheet("background-color: rgb(128, 0, 0);\n")
+        self.slot4.setStyleSheet("background-color: rgb(128, 0, 0);\n")
+        self.slot5.setStyleSheet("background-color: rgb(128, 0, 0);\n")
+        self.slot6.setStyleSheet("background-color: rgb(128, 0, 0);\n")
+        self.slot7.setStyleSheet("background-color: rgb(128, 0, 0);\n")
+        self.slot8.setStyleSheet("background-color: rgb(128, 0, 0);\n")
+        self.slot9.setStyleSheet("background-color: rgb(128, 0, 0);\n")
         for i in items:
             if i['slot'] == 1:
-                self.slot1.setText("A")
+            #    self.slot1.setText("A")
+                self.slot1.setStyleSheet("background-color: rgb(0, 128, 0);\n")
             elif i['slot'] == 2:
-                self.slot2.setText("A")
+             #   self.slot2.setText("A")
+                self.slot2.setStyleSheet("background-color: rgb(0, 128, 0);\n")
             elif i['slot'] == 3:
-                self.slot3.setText("A")
+              #  self.slot3.setText("A")
+                self.slot3.setStyleSheet("background-color: rgb(0, 128, 0);\n")
         global slot_temp2
         global slot_inputvalue1            
     @pyqtSlot()            
@@ -346,22 +398,25 @@ class project(QDialog):
             print("Lets confirm this")
         else:
             self.labelstatus.setText("Occupied")
-            self.slot4.setText("X")
-            self.slot5.setText("X")
-            self.slot6.setText("X")
-            self.slot7.setText("X")
-            self.slot8.setText("X")
-            self.slot9.setText("X")
-            self.slot1.setText("X")
-            self.slot2.setText("X")
-            self.slot3.setText("X")
+            self.slot1.setStyleSheet("background-color: rgb(128, 0, 0);\n")
+            self.slot2.setStyleSheet("background-color: rgb(128, 0, 0);\n")
+            self.slot3.setStyleSheet("background-color: rgb(128, 0, 0);\n")
+            self.slot4.setStyleSheet("background-color: rgb(128, 0, 0);\n")
+            self.slot5.setStyleSheet("background-color: rgb(128, 0, 0);\n")
+            self.slot6.setStyleSheet("background-color: rgb(128, 0, 0);\n")
+            self.slot7.setStyleSheet("background-color: rgb(128, 0, 0);\n")
+            self.slot8.setStyleSheet("background-color: rgb(128, 0, 0);\n")
+            self.slot9.setStyleSheet("background-color: rgb(128, 0, 0);\n")
             for i in items:
                 if i['slot'] == 1:
-                    self.slot1.setText("A")
+                    self.slot1.setStyleSheet("background-color: rgb(0, 128, 0);\n")
+                    self.slot1.repaint()
                 elif i['slot'] == 2:
-                    self.slot2.setText("A")
+                    self.slot2.setStyleSheet("background-color: rgb(0, 128, 0);\n")
+                    self.slot2.repaint()
                 elif i['slot'] == 3:
-                    self.slot3.setText("A")
+                    self.slot3.setStyleSheet("background-color: rgb(0, 128, 0);\n")
+                    self.slot3.repaint()
             slot_temp2 = 0
             flag = 0
         print(items)
@@ -434,6 +489,13 @@ class unlock_slot(QDialog):
         super(unlock_slot, self).__init__()
         loadUi ('unlock.ui',self)
         self.setWindowTitle('unlock window')
+        font = QtGui.QFont()
+        font.setFamily("PibotoLt")
+        self.setFont(font)
+        self.setWindowOpacity(10.0)
+        self.setStyleSheet("background-image: url(bike-dock-system1.jpg);\n"
+                "")
+
         self.unlock_button.clicked.connect(self.on_unlock_buttonc_clicked)
         self.timer_value.setValue(10) 
         self.status_label.setText("Closed!")
@@ -442,6 +504,7 @@ class unlock_slot(QDialog):
         timer_val = self.timer_value.value() 
         self.status_label.setText("open")
         self.status_label.repaint()
+        GPIO.setmode(GPIO.BOARD)
         GPIO.setwarnings(False)
         GPIO.setup(11,GPIO.OUT)
         GPIO.output(11,GPIO.HIGH)

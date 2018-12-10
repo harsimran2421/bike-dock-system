@@ -42,7 +42,7 @@
   <widget class="Line" name="line_2">
    <property name="geometry">
     <rect>
-     <x>120</x>
+     <x>170</x>
      <y>0</y>
      <width>51</width>
      <height>41</height>
@@ -55,9 +55,9 @@
   <widget class="QLabel" name="label_2">
    <property name="geometry">
     <rect>
-     <x>150</x>
+     <x>220</x>
      <y>10</y>
-     <width>67</width>
+     <width>51</width>
      <height>21</height>
     </rect>
    </property>
@@ -207,7 +207,7 @@
     <rect>
      <x>230</x>
      <y>150</y>
-     <width>101</width>
+     <width>231</width>
      <height>21</height>
     </rect>
    </property>
@@ -363,119 +363,119 @@
    <widget class="QLabel" name="slot1">
     <property name="geometry">
      <rect>
-      <x>20</x>
-      <y>10</y>
-      <width>16</width>
-      <height>21</height>
+      <x>5</x>
+      <y>0</y>
+      <width>41</width>
+      <height>41</height>
      </rect>
     </property>
     <property name="text">
-     <string>X</string>
+     <string>   1</string>
     </property>
    </widget>
   </widget>
   <widget class="QLabel" name="slot2">
    <property name="geometry">
     <rect>
-     <x>190</x>
-     <y>290</y>
-     <width>16</width>
-     <height>21</height>
+     <x>175</x>
+     <y>280</y>
+     <width>41</width>
+     <height>41</height>
     </rect>
    </property>
    <property name="text">
-    <string>X</string>
+    <string>   2</string>
    </property>
   </widget>
   <widget class="QLabel" name="slot3">
    <property name="geometry">
     <rect>
-     <x>230</x>
-     <y>290</y>
-     <width>16</width>
-     <height>21</height>
+     <x>215</x>
+     <y>280</y>
+     <width>41</width>
+     <height>41</height>
     </rect>
    </property>
    <property name="text">
-    <string>X</string>
+    <string>   3</string>
    </property>
   </widget>
   <widget class="QLabel" name="slot4">
    <property name="geometry">
     <rect>
-     <x>270</x>
-     <y>290</y>
-     <width>16</width>
-     <height>21</height>
+     <x>255</x>
+     <y>280</y>
+     <width>41</width>
+     <height>41</height>
     </rect>
    </property>
    <property name="text">
-    <string>X</string>
+    <string>   4</string>
    </property>
   </widget>
   <widget class="QLabel" name="slot5">
    <property name="geometry">
     <rect>
-     <x>310</x>
-     <y>290</y>
-     <width>16</width>
-     <height>21</height>
+     <x>295</x>
+     <y>280</y>
+     <width>41</width>
+     <height>41</height>
     </rect>
    </property>
    <property name="text">
-    <string>X</string>
+    <string>   5</string>
    </property>
   </widget>
   <widget class="QLabel" name="slot6">
    <property name="geometry">
     <rect>
-     <x>350</x>
-     <y>290</y>
-     <width>16</width>
-     <height>21</height>
+     <x>335</x>
+     <y>280</y>
+     <width>41</width>
+     <height>41</height>
     </rect>
    </property>
    <property name="text">
-    <string>X</string>
+    <string>   6</string>
    </property>
   </widget>
   <widget class="QLabel" name="slot7">
    <property name="geometry">
     <rect>
-     <x>390</x>
-     <y>290</y>
-     <width>16</width>
-     <height>21</height>
+     <x>375</x>
+     <y>280</y>
+     <width>41</width>
+     <height>41</height>
     </rect>
    </property>
    <property name="text">
-    <string>X</string>
+    <string>   7</string>
    </property>
   </widget>
   <widget class="QLabel" name="slot8">
    <property name="geometry">
     <rect>
-     <x>430</x>
-     <y>290</y>
-     <width>16</width>
-     <height>21</height>
+     <x>415</x>
+     <y>280</y>
+     <width>41</width>
+     <height>41</height>
     </rect>
    </property>
    <property name="text">
-    <string>X</string>
+    <string>   8</string>
    </property>
   </widget>
   <widget class="QLabel" name="slot9">
    <property name="geometry">
     <rect>
-     <x>470</x>
-     <y>290</y>
-     <width>16</width>
-     <height>21</height>
+     <x>455</x>
+     <y>280</y>
+     <width>31</width>
+     <height>41</height>
     </rect>
    </property>
    <property name="text">
-    <string>X</string>
+    <string>  9</string>
    </property>
   </widget>
   <widget class="QPushButton" name="pushButton2">
@@ -486,6 +486,9 @@
      <width>251</width>
      <height>41</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 75 oblique 12pt &quot;DejaVu Sans&quot;;</string>
    </property>
    <property name="text">
     <string>Request</string>
@@ -499,6 +502,9 @@
      <width>131</width>
      <height>41</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 75 oblique 12pt &quot;DejaVu Sans&quot;;</string>
    </property>
    <property name="text">
     <string>Cancel</string>
@@ -526,6 +532,9 @@
      <height>31</height>
     </rect>
    </property>
+   <property name="styleSheet">
+    <string notr="true">font: 75 oblique 12pt &quot;DejaVu Sans&quot;;</string>
+   </property>
    <property name="text">
     <string>Check?</string>
    </property>
@@ -541,6 +550,32 @@
    </property>
    <property name="text">
     <string>TextLabel</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_9">
+   <property name="geometry">
+    <rect>
+     <x>270</x>
+     <y>10</y>
+     <width>131</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_11">
+   <property name="geometry">
+    <rect>
+     <x>90</x>
+     <y>10</y>
+     <width>101</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
    </property>
   </widget>
  </widget>

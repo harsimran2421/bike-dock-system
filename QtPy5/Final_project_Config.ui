@@ -168,7 +168,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>veryharry@gmail.com</string>
+     <string/>
     </property>
    </widget>
    <widget class="QLabel" name="label_7">
@@ -220,6 +220,9 @@
      <height>41</height>
     </rect>
    </property>
+   <property name="styleSheet">
+    <string notr="true">font: 75 oblique 12pt &quot;DejaVu Sans&quot;;</string>
+   </property>
    <property name="text">
     <string>Send Email?</string>
    </property>
@@ -232,6 +235,9 @@
      <width>131</width>
      <height>41</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 75 oblique 12pt &quot;DejaVu Sans&quot;;</string>
    </property>
    <property name="text">
     <string>Close!</string>
