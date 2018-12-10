@@ -110,14 +110,20 @@
 
               },
               queryParams: {
-                  
+
               }
           };
 
           apigClient.availabilityGet(params, body, additionalParams)
               .then(function(result){
-                  console.log(result.data);
                   //This is where you would put a success callback
+                  //console.log(result.data);
+                  // result.data.Items.forEach(function(element, index, array){
+                  //   var resultStr = 'Dock :' + element.dock + ' <br><br>';
+                  //   console.log(resultStr);
+                  // });
+                  var resultStr = 'Dock :' + result.data.Items.dock + ' <br><br>';
+                  console.log(resultStr);
               }).catch( function(result){
                   //This is where you would put an error callback
               });
