@@ -138,6 +138,30 @@
           $("div#checkout_page").show()
         });
 
+        $("#logout").click(function(evt)
+        {
+          $("div#checking_details").hide()
+          $("div#checkin_page").hide()
+          $("div#checkout_page").hide()
+          $("div#login_details").show()
+        });
+
+        $("#cancel_checkin").click(function(evt)
+        {
+          $("div#checking_details").show()
+          $("div#checkin_page").hide()
+          $("div#checkout_page").hide()
+          $("div#login_details").hide()
+        });
+
+        $("#cancel_checkout").click(function(evt)
+        {
+          $("div#checking_details").show()
+          $("div#checkin_page").hide()
+          $("div#checkout_page").hide()
+          $("div#login_details").hide()
+        });
+
         $("#Reserve").click(function(evt)
         {
 
@@ -288,7 +312,7 @@
       <input type="text" id="user" value="test" style="background:#2196F3;"/></br></br>
       <font color=#eeeeee>Password : </font>
       <input type="password" id="pass" value="123" style="background:#2196F3;"/></br></br>
-      <input type="submit" id="login" value="login" />
+      <input type="submit" id="login" value="Login" />
     </div>
 
     <div id="checking_details">
@@ -301,6 +325,7 @@
 
       <input type="submit" id="checkin" value="Book Dock" />
       <input type="submit" id="checkout" value="Checkout" />
+      <input type="submit" id="logout" value="Logout" />
     </div>
 
     <div id="checkin_page">
@@ -323,6 +348,7 @@
       <font color=#eeeeee>Slot No : </font>
       <input type="number" id="slot" style="background:#2196F3;"></br></br>
       <input type="submit" id="Reserve" value="Reserve" />
+      <input type="submit" id="cancel_checkin" value="Cancel" />
       </br></br>
 
     </div>
@@ -337,6 +363,7 @@
 
       <font color=#eeeeee>Confirm Return ?</font></br></br>
       <input type="submit" id="Return" value="Return" />
+      <input type="submit" id="cancel_checkout" value="Cancel" />
       </br></br>
 
     </div>
