@@ -13,6 +13,19 @@
     </style>
     <!-- <script src="http://code.jquery.com/jquery.min.js"></script> -->
 
+    <script type="text/javascript" src="lib/axios/dist/axios.standalone.js"></script>
+    <script type="text/javascript" src="lib/CryptoJS/rollups/hmac-sha256.js"></script>
+    <script type="text/javascript" src="lib/CryptoJS/rollups/sha256.js"></script>
+    <script type="text/javascript" src="lib/CryptoJS/components/hmac.js"></script>
+    <script type="text/javascript" src="lib/CryptoJS/components/enc-base64.js"></script>
+    <script type="text/javascript" src="lib/url-template/url-template.js"></script>
+    <script type="text/javascript" src="lib/apiGatewayCore/sigV4Client.js"></script>
+    <script type="text/javascript" src="lib/apiGatewayCore/apiGatewayClient.js"></script>
+    <script type="text/javascript" src="lib/apiGatewayCore/simpleHttpClient.js"></script>
+    <script type="text/javascript" src="lib/apiGatewayCore/utils.js"></script>
+    <script type="text/javascript" src="apigClient.js"></script>
+
+
     <title>jQuery UI Buttons functionality</title>
     <link href = "https://code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css"
         rel = "stylesheet">
@@ -22,6 +35,9 @@
     <script>
 
     $(document).ready(function () {
+
+      var apigClient = apigClientFactory.newClient();
+
       //$("div#login_details").hide();
       $("div#checking_details").hide()
       $("div#checkin_page").hide()
@@ -35,16 +51,45 @@
         var user = $("#user").val();
         var pass = $("#pass").val();
 
-        if( user == "mango" && pass == "mango")
-        {
-          alert("Login Successful");
-          $("div#checking_details").show()
-          $("div#login_details").hide()
-        }
-        else
-        {
-          alert("Incorrect Credentials !!!");
-        }
+
+        var params = {
+            //This is where any header, path, or querystring request params go. The key is the parameter named as defined in the API
+            'email_id' : $("#user").val(),
+            'RFID_value' : $("#pass").val()
+        };
+        var body = {
+            //This is where you define the body of the request
+        };
+        var additionalParams = {
+            //If there are any unmodeled query parameters or headers that need to be sent with the request you can add them here
+            headers: {
+
+            },
+            queryParams: {
+              'email_id' : $("#user").val(),
+              'RFID_value' : $("#pass").val()
+            }
+        };
+
+        apigClient.userdetailsGet(params, body, additionalParams)
+            .then(function(result){
+                //This is where you would put a success callback
+                console.log(result.data);
+                dataResult =result.data;
+                if( dataResult == "Login Successful")
+                {
+                    alert("Login Successful");
+                    $("div#checking_details").show()
+                    $("div#login_details").hide()
+                }
+                if( dataResult == "User not found")
+                {
+                     alert("User not found !!!");
+                }
+            }).catch( function(result){
+                //This is where you would put an error callback
+            });
+
       });
 
         $("#checkin").click(function(evt)
@@ -52,6 +97,31 @@
           $("div#checking_details").hide()
           $("div#checkin_page").show()
           $("div#checkout_page").hide()
+
+          var params = {
+              //This is where any header, path, or querystring request params go. The key is the parameter named as defined in the API
+          };
+          var body = {
+              //This is where you define the body of the request
+          };
+          var additionalParams = {
+              //If there are any unmodeled query parameters or headers that need to be sent with the request you can add them here
+              headers: {
+
+              },
+              queryParams: {
+                  
+              }
+          };
+
+          apigClient.availabilityGet(params, body, additionalParams)
+              .then(function(result){
+                  console.log(result.data);
+                  //This is where you would put a success callback
+              }).catch( function(result){
+                  //This is where you would put an error callback
+              });
+
         });
 
         $("#checkout").click(function(evt)
@@ -60,6 +130,104 @@
           $("div#checkin_page").hide()
           $("div#checkout_page").show()
         });
+
+        $("#Reserve").click(function(evt)
+        {
+
+          var params = {
+              //This is where any header, path, or querystring request params go. The key is the parameter named as defined in the API
+              'email_id' : $("#user").val(),
+              'RFID_value' : $("#pass").val(),
+              'dock' : $("#dock").val(),
+              'slot' : $("#slot").val()
+          };
+          var body = {
+              //This is where you define the body of the request
+          };
+          var additionalParams = {
+              //If there are any unmodeled query parameters or headers that need to be sent with the request you can add them here
+              headers: {
+
+              },
+              queryParams: {
+                'email_id' : $("#user").val(),
+                'RFID_value' : $("#pass").val(),
+                'dock' : $("#dock").val(),
+                'slot' : $("#slot").val()
+              }
+          };
+
+          apigClient.bookingGet(params, body, additionalParams)
+              .then(function(result){
+                  //This is where you would put a success callback
+                  console.log(result.data);
+                  dataResult =result.data;
+                  if( dataResult == "Booking Successful")
+                  {
+                      alert("Booking Successful");
+                      $("div#checking_details").show()
+                      $("div#checkin_page").hide()
+                  }
+                  if( dataResult == "User already checked in")
+                  {
+                       alert("User already checked in !!!");
+                       $("div#checking_details").show()
+                       $("div#checkin_page").hide()
+                  }
+                  if( dataResult == "Dock not available")
+                  {
+                       alert("Dock not available !!!");
+                  }
+              }).catch( function(result){
+                  //This is where you would put an error callback
+              });
+
+          });
+
+            $("#Return").click(function(evt)
+            {
+
+              var params = {
+                  //This is where any header, path, or querystring request params go. The key is the parameter named as defined in the API
+                  'email_id' : $("#user").val(),
+                  'RFID_value' : $("#pass").val()
+              };
+              var body = {
+                  //This is where you define the body of the request
+              };
+              var additionalParams = {
+                  //If there are any unmodeled query parameters or headers that need to be sent with the request you can add them here
+                  headers: {
+
+                  },
+                  queryParams: {
+                    'email_id' : $("#user").val(),
+                    'RFID_value' : $("#pass").val()
+                  }
+              };
+
+              apigClient.checkoutGet(params, body, additionalParams)
+                  .then(function(result){
+                      //This is where you would put a success callback
+                      console.log(result.data);
+                      dataResult =result.data;
+                      if( dataResult == "Checkout Successful")
+                      {
+                          alert("Checkout Successful");
+                          $("div#checking_details").show()
+                          $("div#checkout_page").hide()
+                      }
+                      if( dataResult == "No dock assigned")
+                      {
+                           alert("No dock assigned !!!");
+                           $("div#checking_details").show()
+                           $("div#checkout_page").hide()
+                      }
+                  }).catch( function(result){
+                      //This is where you would put an error callback
+                  });
+
+            });
 
     })
 
@@ -86,8 +254,9 @@
     }
 
     body {
-      background-image: url("https://www.outdoorproject.com/sites/default/files/styles/cboxshow/public/rainier2013_2.jpg?itok=YeEBAyej");
-      background-size: cover;
+      background-image: url("http://www.scalsys.com/wallpapers/bicycle-wallpaper/bicycle-wallpaper_156886.jpg");
+
+      background-size: length;
       //background-repeat: no-repeat;
     }
 
@@ -108,29 +277,34 @@
       <font size="6" color=#dddddd >Login</font>
 
       </br></br>
-      <font color=#eeeeee>Identikey : </font>
-      <input type="text" id="user" value="mango" style="background:#2196F3;"/></br></br>
+      <font color=#eeeeee>Email ID : </font>
+      <input type="text" id="user" value="test" style="background:#2196F3;"/></br></br>
       <font color=#eeeeee>Password : </font>
-      <input type="password" id="pass" value="mango" style="background:#2196F3;"/></br></br>
+      <input type="password" id="pass" value="123" style="background:#2196F3;"/></br></br>
       <input type="submit" id="login" value="login" />
     </div>
 
     <div id="checking_details">
+
       </br></br>
-      <input type="submit" id="checkin" value="checkin" />
-      <input type="submit" id="checkout" value="checkout" />
-      <input type="submit" id="open_dock" value="Open Dock" />
+
+      <font size="6" color=#dddddd >How you doin ?</font>
+
+      </br></br></br></br>
+
+      <input type="submit" id="checkin" value="Book Dock" />
+      <input type="submit" id="checkout" value="Checkout" />
     </div>
 
     <div id="checkin_page">
 
-      <font size="6" color=#dddddd >Checkin</font>
+      <font size="6" color=#dddddd >Booking</font>
       </br></br>
 
-      <font color=#eeeeee>Location : </font>
-      <input type="text" style="background:#2196F3;"></br></br>
+      <font color=#eeeeee>Dock : </font>
+      <input type="number" id="dock" style="background:#2196F3;"></br></br>
       <font color=#eeeeee>Slot No : </font>
-      <input type="number" style="background:#2196F3;"></br></br>
+      <input type="number" id="slot" style="background:#2196F3;"></br></br>
       <input type="submit" id="Reserve" value="Reserve" />
       </br></br>
 
@@ -138,12 +312,13 @@
 
     <div id="checkout_page">
 
+      </br></br>
+
       <font size="6" color=#dddddd >Checkout</font>
 
-    </br></br>
+      </br></br></br></br>
 
-      <font color=#eeeeee>Location : "data from database" </font></br></br>
-      <font color=#eeeeee>Slot No  : "data from database"</font></br></br>
+      <font color=#eeeeee>Confirm Return ?</font></br></br>
       <input type="submit" id="Return" value="Return" />
       </br></br>
 
